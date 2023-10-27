@@ -1,0 +1,21 @@
+name: Smoke Tests
+
+on:
+  push:
+    branches:
+      - master
+      - dummy
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Set up NodeJS v18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Set up app
+        run: npm ci
+      - name: Start tests
+        run: npm test
